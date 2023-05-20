@@ -2,12 +2,13 @@ import { View, Text, Image, TextInput, ScrollView } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ChevronDownIcon, UserIcon, MagnifyingGlassIcon, AdjustmentsVerticalIcon } from 'react-native-heroicons/outline'
 import Categories from '../components/Categories'
+import FeaturedRow from '../components/FeaturedRow'
 
 import React from 'react'
 
 const HomeScreen = () => {
     return (
-        <SafeAreaView className="bg-white pt-5">
+        <SafeAreaView className=" pt-5 ">
             <View className="flex">
                 {/* Header */}
                 <View className="flex-row pb-3 items-center mx-4 space-x-2">
@@ -39,10 +40,10 @@ const HomeScreen = () => {
                     {/* Category */}
                     <Categories />
 
-                    {/* offer */}
-
                     {/* featured */}
-
+                    <FeaturedRow id="1" title="Featured" description="Paid placements from our partners" />
+                    <FeaturedRow id="2" title="Tasty Discounts" description="Paid placements from our partners" />
+                    <FeaturedRow id="3" title="Offers near you" description="Paid placements from our partners" />
 
                 </ScrollView>
 

@@ -14,9 +14,12 @@ const Categories = () => {
 
         >
             {/* category card */}
-            <CategoryCard imgUrl="https://links.papareact.com/wru" title="test" />
-            <CategoryCard imgUrl="https://links.papareact.com/wru" title="testis" />
-            <CategoryCard imgUrl="https://links.papareact.com/wru" title="testosterone" />
+            <CategoryCard imgUrl="https://links.papareact.com/gn7" title="test" />
+            <CategoryCard imgUrl="https://links.papareact.com/gn7" title="testis" />
+            <CategoryCard imgUrl="https://links.papareact.com/gn7" title="testosteron" />
+            <CategoryCard imgUrl="https://links.papareact.com/gn7" title="test" />
+            <CategoryCard imgUrl="https://links.papareact.com/gn7" title="testis" />
+            <CategoryCard imgUrl="https://links.papareact.com/gn7" title="testosteron" />
 
 
 
