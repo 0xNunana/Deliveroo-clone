@@ -9,19 +9,23 @@ import sanityClient from '../../sanity'
 import React, { useState, useEffect } from 'react'
 
 const HomeScreen = () => {
-    const [dishes, setDishes] = useState([])
+    const [featured, setFeatured] = useState([])
 
 
 
     useEffect(() => {
         async function fetchData() {
             try {
-                await sanityClient.fetch(`*[_type=="dish"]{
-                ...,
-    
-              }
+                await sanityClient.fetch(`*[_type=="featured"  ]{
+                    ...,
+      restaurants[]=>{
+        ...,
+        dishes[]=>{...}
+      }
+        
+                  }
                 `)
-                    .then((data) => { setDishes(data) })
+                    .then((data) => { setFeatured(data) })
             }
 
             catch (error) {
@@ -31,9 +35,9 @@ const HomeScreen = () => {
         fetchData()
 
     }, [])
-    console.log(dishes)
+    console.log(`"featured:"  featured`)
     return (
-        <SafeAreaView className=" pt-5 ">
+        <SafeAreaView className=" pt-5 pb-64">
             <View className="flex">
                 {/* Header */}
                 <View className="flex-row pb-3 items-center mx-4 space-x-2">
@@ -66,9 +70,8 @@ const HomeScreen = () => {
                     <Categories />
 
                     {/* featured */}
-                    <FeaturedRow id="1" title="Featured" description="Paid placements from our partners" />
-                    <FeaturedRow id="2" title="Tasty Discounts" description="Paid placements from our partners" />
-                    <FeaturedRow id="3" title="Offers near you" description="Paid placements from our partners" />
+                    {featured?.map(feat => <FeaturedRow id={feat._id} key={feat._id} title={feat.name} description={feat.short_description} />)}
+
 
                 </ScrollView>
 
