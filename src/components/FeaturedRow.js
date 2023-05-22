@@ -2,24 +2,26 @@ import { View, Text, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { ArrowRightIcon } from "react-native-heroicons/outline"
 import RestaurantCard from './RestaurantCard'
-import sanityClient from '../../sanity'
+import sanityClient, { urlFor } from '../../sanity'
+
 
 const FeaturedRow = ({ id, title, description }) => {
     const [restaurant, setRestaurant] = useState([])
+
+
     useEffect(() => {
         async function fetchData() {
             try {
                 await sanityClient.fetch(
-                    `     *[_type == "restaurant" ] {
+                    `   *[_type == "restaurant" ] {
                         ...,
-                        restaurants[]->{
-                            ...,
+                       
+        
                             dishes[]->,
                             type-> {
                                name
                             }
-                         },
-                      }
+                         }
                 `,) //fetch data based on the dynamic id
                     .then((data) => { setRestaurant(data) })
             }
@@ -30,7 +32,7 @@ const FeaturedRow = ({ id, title, description }) => {
         }
         fetchData()
 
-    }, [])
+    }, [id])
     console.log(restaurant)
     return (
         <View>
@@ -52,7 +54,7 @@ const FeaturedRow = ({ id, title, description }) => {
 
             >
 
-                {restaurant?.map((food) => <RestaurantCard key={food._id} id={food._id} title={food.name} rating={food.rating} genre={food.short_description} address={food.address} short_description={food.short_description} dishes=
+                {restaurant?.map((food) => <RestaurantCard key={food._id} id={food._id} title={food.name} rating={food.rating} imgUrl={urlFor(food.image).url()} genre={food.short_description} address={food.address} short_description={food.short_description} dishes=
                     {food.dishes} long={food.long} lat={food.lat} />)}
 
             </ScrollView>

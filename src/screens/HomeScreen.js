@@ -16,14 +16,9 @@ const HomeScreen = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                await sanityClient.fetch(`*[_type=="featured"  ]{
-                    ...,
-      restaurants[]=>{
-        ...,
-        dishes[]=>{...}
+                await sanityClient.fetch(`*[_type=="featured"]{
+                ...
       }
-        
-                  }
                 `)
                     .then((data) => { setFeatured(data) })
             }

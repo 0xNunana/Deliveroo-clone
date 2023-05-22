@@ -1,8 +1,8 @@
 import { View, Text, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import CategoryCard from './CategoryCard'
-import sanityClient from '../../sanity'
-import imageUrlBuilder from '@sanity/image-url'
+import sanityClient, { urlFor } from '../../sanity'
+
 const Categories = () => {
     const [categories, setCategories] = useState([])
     useEffect(() => {
@@ -33,7 +33,7 @@ const Categories = () => {
 
         >
             {/* category card */}
-            {categories?.map((cat) => <CategoryCard imgUrl="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80" title={cat.name} key={cat._id} />)}
+            {categories?.map((cat) => <CategoryCard imgUrl={urlFor(cat.image).url()} title={cat.name} key={cat._id} />)}
 
 
 
