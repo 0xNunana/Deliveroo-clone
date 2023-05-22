@@ -3,10 +3,35 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { ChevronDownIcon, UserIcon, MagnifyingGlassIcon, AdjustmentsVerticalIcon } from 'react-native-heroicons/outline'
 import Categories from '../components/Categories'
 import FeaturedRow from '../components/FeaturedRow'
+import sanityClient from '../../sanity'
 
-import React from 'react'
+
+import React, { useState, useEffect } from 'react'
 
 const HomeScreen = () => {
+    const [dishes, setDishes] = useState([])
+
+
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                await sanityClient.fetch(`*[_type=="dish"]{
+                ...,
+    
+              }
+                `)
+                    .then((data) => { setDishes(data) })
+            }
+
+            catch (error) {
+                console.log(error)
+            }
+        }
+        fetchData()
+
+    }, [])
+    console.log(dishes)
     return (
         <SafeAreaView className=" pt-5 ">
             <View className="flex">
