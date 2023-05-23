@@ -9,7 +9,7 @@ const RestaurantScreen = ({ route }) => {
     const { id, imgUrl, title, rating, genre, address, short_description, dishes, long, lat } = route.params
     const Navigation = useNavigation()
     return (
-        <SafeAreaView>
+        <SafeAreaView className="pb-2">
             <ScrollView>
                 <View className="relative">
                     <Image source={{ uri: imgUrl }} className=" bg-gray-300  h-48 w-full " />
@@ -49,9 +49,9 @@ const RestaurantScreen = ({ route }) => {
                     <Text className="px-4 pt-6 mb-3 font-bold text-xl">
                         Menu
                     </Text>
-                    {dishes?.map(dish => (
+                    {dishes?.map((dish) => (
                         <DishRow
-                            key={dish.name}
+                            key={dish._id}
                             id={dish._id}
                             name={dish.name}
                             description={dish.short_description}
