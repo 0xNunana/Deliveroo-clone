@@ -1,15 +1,28 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ArrowLeftIcon, ChevronRightIcon, StarIcon, MapPinIcon } from 'react-native-heroicons/solid'
 import { QuestionMarkCircleIcon } from 'react-native-heroicons/outline'
 import { useNavigation } from '@react-navigation/native'
 import DishRow from '../components/DishRow'
+import BasketIcon from '../components/BasketIcon'
+import { useDispatch } from 'react-redux'
+import { addToRestaurant } from '../../Slices/restaurantSlice'
+
+
+
 const RestaurantScreen = ({ route }) => {
     const { id, imgUrl, title, rating, genre, address, short_description, dishes, long, lat } = route.params
     const Navigation = useNavigation()
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(addToRestaurant({ id, imgUrl, title, rating, genre, address, short_description, dishes, long, lat }))
+
+
+    }, [dispatch])
+
     return (
-        <SafeAreaView className="pb-2">
+        <SafeAreaView className="pb-2 relative">
             <ScrollView>
                 <View className="relative">
                     <Image source={{ uri: imgUrl }} className=" bg-gray-300  h-48 w-full " />
@@ -26,7 +39,9 @@ const RestaurantScreen = ({ route }) => {
                                 <StarIcon color="green" opacity={0.5} size={22} />
                                 <Text className="text-gray-500">
                                     <Text className="text-green-500">{rating}</Text> . {genre}
+
                                 </Text>
+                                <Text>{id}</Text>
                             </View>
 
                             <View className="flex-row items-center space-x-1">
@@ -45,7 +60,7 @@ const RestaurantScreen = ({ route }) => {
                     </TouchableOpacity>
 
                 </View>
-                <View>
+                <View className="pb-20">
                     <Text className="px-4 pt-6 mb-3 font-bold text-xl">
                         Menu
                     </Text>
@@ -63,6 +78,7 @@ const RestaurantScreen = ({ route }) => {
 
 
             </ScrollView>
+            <BasketIcon />
         </SafeAreaView>
 
     )

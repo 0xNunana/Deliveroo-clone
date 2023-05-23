@@ -30,7 +30,7 @@ const HomeScreen = () => {
         fetchData()
 
     }, [])
-    console.log(`"featured:"  featured`)
+
     return (
         <SafeAreaView className=" pt-5 pb-64">
             <View className="flex">

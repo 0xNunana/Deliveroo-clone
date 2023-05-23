@@ -31,4 +31,5 @@ export const basketSlice = createSlice({
 export const { addToBasket, removeFromBasket } = basketSlice.actions
 export const selectBasketItems = (state) => state.basket.items
 export const selectBasketItemsId = (state, id) => state.basket.items.filter((item) => item.id == id) //shows selected items based on id
+export const basketTotal = (state) => state.basket.items.reduce((total, item) => total = total + item.price, 0)
 export default basketSlice.reducer

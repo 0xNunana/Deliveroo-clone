@@ -21,7 +21,7 @@ const Categories = () => {
         fetchData()
 
     }, [])
-    console.log(categories)
+
     return (
         <ScrollView
             horizontal
