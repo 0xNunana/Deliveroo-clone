@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import React, { useState, useMemo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectRestaurants } from '../../Slices/restaurantSlice'
-import { selectBasketItems, removeFromBasket } from '../../Slices/basketSlice'
+import { selectBasketItems, removeFromBasket, basketTotal } from '../../Slices/basketSlice'
 import { useNavigation } from '@react-navigation/native'
 import { XCircleIcon } from 'react-native-heroicons/solid'
 import { urlFor } from '../../sanity'
@@ -11,6 +11,7 @@ import { urlFor } from '../../sanity'
 const BasketScreen = () => {
     const navigation = useNavigation()
     const restaurant = useSelector(selectRestaurants)
+    const subtotal = useSelector(basketTotal)
     const items = useSelector(selectBasketItems)
     const dispatch = useDispatch()
     const [groupedItemsInBasket, setGroupedItemsInBasket] = useState([])
@@ -23,7 +24,6 @@ const BasketScreen = () => {
         setGroupedItemsInBasket(groupedItems);
     }, [items])
 
-    console.log("gouped" + groupedItemsInBasket)
     return (
         <SafeAreaView className="flex-1 bg-white">
             <View className="flex-1 bg-gray-100">
@@ -70,6 +70,30 @@ const BasketScreen = () => {
                         </View>
                     ))}
                 </ScrollView>
+                <View className="p-5 bg-white mt-5 space-y-4">
+                    <View className="flex-row justify-between">
+                        <Text className="text-gray-400">Subtotal</Text>
+                        <Text className="text-gray-400">
+                            GHS {subtotal}
+                        </Text>
+                    </View>
+                    <View className="flex-row justify-between">
+                        <Text className="text-gray-400">Delivery Fee</Text>
+                        <Text className="text-gray-400">
+                            GHS 20
+                        </Text>
+
+                    </View>
+                    <View className="flex-row justify-between">
+                        <Text>Total</Text>
+                        <Text className="font-extrabold">
+                            GHS {subtotal + 20}
+                        </Text>
+                    </View>
+                    <TouchableOpacity onPress={() => navigation.navigate("Preparing Order")} className="rounded-lg bg-[#00CCBB] p-4">
+                        <Text className="text-center text-white text-lg font-bold">Place Order</Text>
+                    </TouchableOpacity>
+                </View>
 
             </View>
         </SafeAreaView >

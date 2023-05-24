@@ -41,7 +41,7 @@ const RestaurantScreen = ({ route }) => {
                                     <Text className="text-green-500">{rating}</Text> . {genre}
 
                                 </Text>
-                                <Text>{id}</Text>
+
                             </View>
 
                             <View className="flex-row items-center space-x-1">
