@@ -19,12 +19,24 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/deli.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.deliver.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c59b394e-5ea5-431b-8c51-f00c16669377"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c59b394e-5ea5-431b-8c51-f00c16669377"
     }
   }
 }
